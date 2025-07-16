@@ -1,2 +1,4 @@
 *.csv
 ieee_pickled.pkl
+features_normalized.pt
+labels.pt
