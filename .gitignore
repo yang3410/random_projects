@@ -2,3 +2,6 @@
 ieee_pickled.pkl
 features_normalized.pt
 labels.pt
+exp1/train_test_data.pt
+features_normalized.npy
+features_normalized_noemail.npy

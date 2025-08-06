@@ -1,0 +1,27 @@
+removed features with >85% missing values, removed P_ and R_ email domains, filled nan with 0, used masks.
+Best set of weights is epoch 26 (epoch=25). 
+
+
+# Define the autoencoder
+class Autoencoder(nn.Module): # here the input nn.Module specifies the super class that Autoencoder is in
+    # we are making an object class by modifying an existing class nn.Module
+    def __init__(self, input_dim, latent_dim=64):
+        super().__init__() # calls initialization of nn.Module object
+        self.encoder = nn.Sequential(
+            nn.Linear(input_dim, 256),
+            nn.ReLU(), # this is also a layer but has no weights
+            nn.Linear(256, 128),
+            nn.ReLU(),
+            nn.Linear(128, latent_dim),
+        )
+        self.decoder = nn.Sequential(
+            nn.Linear(latent_dim, 128),
+            nn.ReLU(),
+            nn.Linear(128, 256),
+            nn.ReLU(),
+            nn.Linear(256, input_dim),
+        )
+
+    def forward(self, x):
+        latent = self.encoder(x)
+        return self.decoder(latent)
